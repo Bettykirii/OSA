@@ -1,0 +1,47 @@
+// If you want to override variables do it here
+// @import '~antd/dist/antd.css';
+@import './custom-antd.css';
+@import "variables";
+
+$body-bg: #ffff;
+$theme-colors: (
+  "primary": #002868,
+  "danger":#dc3545
+);
+
+$sidebar-lg-width:  400px;
+$sidebar-width: 300px;
+$sidebar-xl-width:  400px;
+
+$sidebar-dark-nav-link-hover-color: #002868;
+$sidebar-dark-nav-link-hover-bg: #ffff;
+$sidebar-dark-nav-link-hover-icon-color:  #002868;
+
+$sidebar-dark-nav-link-active-color: #002868;
+$sidebar-dark-nav-link-active-bg: #fff;
+$sidebar-dark-nav-link-active-icon-color:#002868;
+
+$sidebar-dark-nav-dropdown-color:rgba(255, 255, 255, 0.6);
+$sidebar-dark-nav-dropdown-bg: #002868;
+$sidebar-dark-nav-dropdown-indicator-hover-color: #002868;
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+// Import CoreUI styles
+@import "~@coreui/coreui/scss/coreui.scss";
+
+// Some temp fixes
+@import "fixes";
+
+// If you want to add something do it here
+@import "custom";
