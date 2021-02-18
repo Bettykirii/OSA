@@ -6,14 +6,21 @@ import loginBackground from './miliki-bg.png';
 const { Title } = Typography;
 
 class LogIn extends React.Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, { username, password }) => {
-      if (!err) {
-        console.log('logged in!!')
-      }
-    });
-  };
+  handleSubmit = (event) => {
+    alert('A form was submitted: ' + this.state);
+
+    fetch('https://tunde.herokuapp.com/api/v1/login/',
+     {
+        method: 'POST',
+        // We convert the React state to JSON and send it as the POST body
+        body: JSON.stringify(this.state)
+      }).then(function(response) {
+        console.log(response)
+        return response.json();
+      });
+
+    event.preventDefault();
+}
 
   render() {
     const { getFieldDecorator } = this.props.form;
