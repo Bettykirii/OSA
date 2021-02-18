@@ -2,26 +2,27 @@ import React, { Component } from 'react'
 
 import { Table } from 'antd';
 import axios from 'axios';
-
-
+import history from '../../helpers/routeUtils';
+import Reports from './Reports'
+// import { useHistory } from "react-router-dom";
 
 const columns = [
   {
     title: 'BrandName ',
-    dataIndex: 'brandName',
-    key: 'brandName',
+    dataIndex: 'name',
+    key: 'name',
     render: text => <a>{text}</a>,
   },
   {
     title: 'Keyword ',
-    dataIndex: 'keyword',
-    key: 'keyword',
+    dataIndex: 'username',
+    key: 'username',
     responsive: ['md'],
   },
   {
     title: 'Template ',
-    dataIndex: 'template',
-    key: 'template',
+    dataIndex: 'email',
+    key: 'email',
     responsive: ['lg'],
   },
 ];
@@ -43,15 +44,28 @@ export default class Tasks extends Component {
         axios.get(`https://jsonplaceholder.typicode.com/users`)
           .then(res => {
             const data = res.data;
-            console.log(data)
+            console.log(data[0])
             this.setState({ data });
           })
       }
+    
+    clicked() {
+
+    }
 
     render() {
         return (
             <>
-               <Table dataSource={this.state.data} columns={columns} />; 
+               <Table dataSource={this.state.data} rowKey="id" columns={columns} 
+                    onRow={(record) => ({ 
+                        onClick: () => { 
+                            console.log(record)  
+                            const repots = new Reports(); 
+                            repots.getSelected(record)                         
+                            history.push('/reports');
+                        } 
+                      })}
+               />; 
             </>
         )
     }

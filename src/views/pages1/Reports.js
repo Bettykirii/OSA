@@ -25,20 +25,34 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: '1',
-    brandName: 'John Brown',
-    keyword: 32,
-    template: 'New York No. 1 Lake Park',
-  },
-];
+// const data = [
+//   {
+//     key: '1',
+//     brandName: 'John Brown',
+//     keyword: 32,
+//     template: 'New York No. 1 Lake Park',
+//   },
+// ];
 export default class Reports extends Component {
-    
+
+    data = {}
+
+    getSelected(record){   
+        this.data = record 
+        console.log('From Taks', record)
+        console.log('From Taks', this.data)
+    }
+
+    componentDidMount(){}
+
+
     render() {
         return (
             <>
-               <Table dataSource={data} columns={columns} />; 
+               {/* <Table dataSource={data} columns={columns} />;  */}
+               <h1>Home</h1>
+               <h1>{this.data.name}</h1>
+               <h2>{this.data.email}</h2>
             </>
         )
     }
