@@ -34,6 +34,7 @@ const data = [
   },
 ];
 export default class Reports extends Component {
+    
     render() {
         return (
             <>

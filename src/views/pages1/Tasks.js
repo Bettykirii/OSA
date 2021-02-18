@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { Table } from 'antd';
+import axios from 'axios';
 
 
 
@@ -25,19 +26,32 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: '1',
-    brandName: 'John Brown',
-    keyword: 32,
-    template: 'New York No. 1 Lake Park',
-  },
-];
+// const data = [
+//   {
+//     key: '1',
+//     brandName: 'John Brown',
+//     keyword: 32,
+//     template: 'New York No. 1 Lake Park',
+//   },
+// ];
 export default class Tasks extends Component {
+    state = {
+        data: []
+    }
+
+    componentDidMount() {
+        axios.get(`https://jsonplaceholder.typicode.com/users`)
+          .then(res => {
+            const data = res.data;
+            console.log(data)
+            this.setState({ data });
+          })
+      }
+
     render() {
         return (
             <>
-               <Table dataSource={data} columns={columns} />; 
+               <Table dataSource={this.state.data} columns={columns} />; 
             </>
         )
     }

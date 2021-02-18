@@ -55,8 +55,8 @@ class Register extends React.Component {
               className="login-logo"
             /> */}
             <div className="page-titles">
-              <Title level={3}>Login</Title>
-              <Title level={4}>Kindly enter username and password to login</Title>
+              <Title level={3}>Register</Title>
+              <Title level={4}>Fill the fields to Register</Title>
             </div>
             <Form.Item label="Email Address">
               {getFieldDecorator('email', {
@@ -143,7 +143,7 @@ class Register extends React.Component {
             </Form.Item>
             <Form.Item>
               <div className="forgot-change">
-                <a className="Already Registered?" href="./home">
+                <a className="Already Registered?" href="./">
                   Login Here
                 </a>
                

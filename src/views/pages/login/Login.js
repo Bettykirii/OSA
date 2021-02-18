@@ -51,7 +51,7 @@ class LogIn extends React.Component {
            
             <div className="page-titles">
               <Title level={3}>Login</Title>
-              <Title level={4}>Kindly enter username and password to login</Title>
+              <Title level={4}>Enter username and password to login</Title>
             </div>
             <Form.Item label="UserName">
               {getFieldDecorator('username', {
