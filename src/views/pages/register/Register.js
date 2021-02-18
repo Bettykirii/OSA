@@ -121,9 +121,9 @@ class Register extends React.Component {
                   prefix={
                     <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>
                   }
-                  placeholder="username"
+                  type="password"
+                  placeholder="Password"
                   className="textfield"
-                  autoFocus
                 />
               )}
             </Form.Item>
@@ -143,15 +143,10 @@ class Register extends React.Component {
             </Form.Item>
             <Form.Item>
               <div className="forgot-change">
-                <a className="Not-Registered" href="./register">
-                  Not yet Registered,register here 
+                <a className="Already Registered?" href="./home">
+                  Login Here
                 </a>
-                <a className="login-form-forgot" href="#">
-                  Forgot password
-                </a>
-                <a className="login-form-forgot" href="#">
-                  Change password
-                </a>
+               
               </div>
               <Row type="flex" justify="center" align="middle">
                 <Button

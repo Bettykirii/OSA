@@ -33,7 +33,7 @@ const data = [
     template: 'New York No. 1 Lake Park',
   },
 ];
-export default class Tasks extends Component {
+export default class Reports extends Component {
     render() {
         return (
             <>

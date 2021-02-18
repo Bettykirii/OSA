@@ -1,27 +1,42 @@
 import React from 'react';
 import './login.scss';
+import axios from 'axios';
+import history from '../../../helpers/routeUtils';
+
 import { Form, Icon, Input, Button, Row, Typography } from 'antd';
 import loginBackground from './miliki-bg.png';
 
 const { Title } = Typography;
+let loginResponse;
 
 class LogIn extends React.Component {
-  handleSubmit = (event) => {
-    alert('A form was submitted: ' + this.state);
-
-    fetch('https://tunde.herokuapp.com/api/v1/login/',
-     {
-        method: 'POST',
-        // We convert the React state to JSON and send it as the POST body
-        body: JSON.stringify(this.state)
-      }).then(function(response) {
-        console.log(response)
-        return response.json();
-      });
-
+  handleSubmit =  (event) => {
     event.preventDefault();
-}
+      this.props.form.validateFields( async(err, { username, password }) => {
+        if (!err) {
 
+          try {
+            loginResponse = await axios
+            .post(
+              `https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/login/`,
+              {
+            
+                username,
+                password,
+              
+              },
+            );
+            history.push('/');
+            const {token} = loginResponse.data;
+            axios.defaults.headers.common["Authorization"] = token;
+            console.log('loginresp>>>>>>>>',token);
+          } catch (error) {
+            console.log('unable to register');
+          }
+          
+        }
+      });
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -33,16 +48,12 @@ class LogIn extends React.Component {
           style={({ minHeight: '100vh' }, loginStyle)}
         >
           <Form onSubmit={this.handleSubmit} className="login-form" layout="vertical">
-            {/* <img
-              src="logos/miliki-logo-small.png"
-              alt="miliki-logo"
-              className="login-logo"
-            /> */}
+           
             <div className="page-titles">
               <Title level={3}>Login</Title>
               <Title level={4}>Kindly enter username and password to login</Title>
             </div>
-            <Form.Item label="Email Address">
+            <Form.Item label="UserName">
               {getFieldDecorator('username', {
                 rules: [
                   { required: true, message: 'Please enter your email' },
@@ -82,12 +93,7 @@ class LogIn extends React.Component {
                 <a className="Not-Registered" href="./register">
                   Not yet Registered,register here 
                 </a>
-                <a className="login-form-forgot" href="#">
-                  Forgot password
-                </a>
-                <a className="login-form-forgot" href="#">
-                  Change password
-                </a>
+                
               </div>
               <Row type="flex" justify="center" align="middle">
                 <Button
@@ -95,7 +101,7 @@ class LogIn extends React.Component {
                   htmlType="submit"
                   className="textfield"
                 >
-                  Proceed
+                  LogIn
                 </Button>
               </Row>
               <div className="contact-us">
