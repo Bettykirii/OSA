@@ -41,7 +41,7 @@ export default class Tasks extends Component {
     }
 
     componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
+        axios.get(`https://tunde.herokuapp.com/api/v1/tasks/`)
           .then(res => {
             const data = res.data;
             console.log(data[0])
