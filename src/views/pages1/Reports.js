@@ -34,8 +34,7 @@ const columns = [
 //   },
 // ];
 export default class Reports extends Component {
-
-    data = {}
+    
 
     getSelected(record){   
         this.data = record 
