@@ -26,7 +26,7 @@ class LogIn extends React.Component {
               
               },
             );
-            history.push('/');
+            history.push('/dashboard');
             const {token} = loginResponse.data;
             axios.defaults.headers.common["Authorization"] = token;
             console.log('loginresp>>>>>>>>',token);
