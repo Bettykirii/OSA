@@ -41,7 +41,7 @@ export default class Tasks extends Component {
     }
 
     componentDidMount() {
-        axios.get(`https://tunde.herokuapp.com/api/v1/tasks/`)
+        axios.get(`https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/tasks/`)
           .then(res => {
             const data = res.data;
             console.log(data[0])
