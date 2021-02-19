@@ -1,58 +1,59 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+// import ReactTable from "react-table"; 
+// import 'react-table/react-table.css'
 
-import { Table } from 'antd';
-
-
-
-const columns = [
-  {
-    title: 'BrandName ',
-    dataIndex: 'brandName',
-    key: 'brandName',
-    render: text => <a>{text}</a>,
-  },
-  {
-    title: 'Keyword ',
-    dataIndex: 'keyword',
-    key: 'keyword',
-    responsive: ['md'],
-  },
-  {
-    title: 'Template ',
-    dataIndex: 'template',
-    key: 'template',
-    responsive: ['lg'],
-  },
-];
-
-// const data = [
-//   {
-//     key: '1',
-//     brandName: 'John Brown',
-//     keyword: 32,
-//     template: 'New York No. 1 Lake Park',
-//   },
-// ];
 export default class Reports extends Component {
-    
-
-    getSelected(record){   
-        this.data = record 
-        console.log('From Taks', record)
-        console.log('From Taks', this.data)
+  constructor(props){
+    super(props)
+    this.state = {
+      users: [],
+      loading:true
     }
-
-    componentDidMount(){}
-
-
-    render() {
-        return (
-            <>
-               {/* <Table dataSource={data} columns={columns} />;  */}
-               <h1>Home</h1>
-               <h1>{this.data.name}</h1>
-               <h2>{this.data.email}</h2>
-            </>
-        )
-    }
+  }
+  async getUsersData(){
+    const res = await axios.get('https://tunde.herokuapp.com/api/v1/reports')
+    console.log(res.data)
+    this.setState({loading:false, users: res.data})
+  }
+  componentDidMount(){
+    this.getUsersData()
+  }
+  render() {
+    const columns = [{  
+      Header: 'ID',  
+      accessor: 'id',
+     }
+     ,{  
+      Header: 'Name',  
+      accessor: 'name' ,
+      }
+     
+     ,{  
+     Header: 'Username',  
+     accessor: 'username' ,
+     }
+     ,{  
+     Header: 'Phone',  
+     accessor: 'phone',
+     },
+     {  
+      Header: 'Email',  
+      accessor: 'email',
+      },
+      {  
+        Header: 'Website',  
+        accessor: 'website',
+        }
+  ]
+    return (
+//       <ReactTable  
+//       data={this.state.users}  
+//       columns={columns}  
+//    />
+<>
+<p>reports</p>
+</>
+    )
+  }
 }
