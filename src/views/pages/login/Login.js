@@ -5,6 +5,7 @@ import history from '../../../helpers/routeUtils';
 
 import { Form, Icon, Input, Button, Row, Typography } from 'antd';
 import loginBackground from './miliki-bg.png';
+import { access } from 'fs';
 
 const { Title } = Typography;
 let loginResponse;
@@ -26,10 +27,15 @@ class LogIn extends React.Component {
               
               },
             );
-            history.push('/dashboard');
+            
             const {token} = loginResponse.data;
-            axios.defaults.headers.common["Authorization"] = token;
-            console.log('loginresp>>>>>>>>',token);
+            //axios.defaults.headers.common["Authorization"] = token;
+            localStorage.setItem("token", token)
+           
+
+            history.push('/dashboard');
+            
+          
           } catch (error) {
             console.log('unable to register');
           }

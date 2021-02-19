@@ -8,7 +8,7 @@ import history from '../../helpers/routeUtils';
 console.clear();
 
 const { PureComponent } = React;
-
+const token = localStorage.getItem("token");
 class Tasks extends PureComponent {
    state = {
       formState: {
@@ -73,8 +73,12 @@ class Tasks extends PureComponent {
          });
 
         try{
-            let response = await axios.post('https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/tasks/',this.state.tasks)
-            console.log('Rask Post Status: ',response.status)
+            const config = {
+                headers: { Authorization: `Token ${token}` }
+            };
+            let response = await axios.post('https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/tasks/',this.state.tasks,config)
+
+            console.log('Rask Post Status:>>>>>> ',response.data)
             history.push('/tasks')
         }catch (err){
             console.log('Task Post error: ',err)
