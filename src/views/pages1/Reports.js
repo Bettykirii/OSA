@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 // import ReactTable from "react-table"; 
 // import 'react-table/react-table.css'
+const token = localStorage.getItem("token");
 
 export default class Reports extends Component {
   constructor(props){
@@ -12,7 +13,10 @@ export default class Reports extends Component {
     }
   }
   async getUsersData(){
-    const res = await axios.get('https://tunde.herokuapp.com/api/v1/reports')
+    const res = await axios.get('https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/reports', {
+        headers: {
+            Authorization: `Token ${token}`,
+        },
     console.log(res.data)
     this.setState({loading:false, users: res.data})
   }
