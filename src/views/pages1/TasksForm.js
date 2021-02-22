@@ -14,22 +14,25 @@ class Tasks extends React.Component {
    onSubmit = async (event) => { 
 
     event.preventDefault();
-      this.props.form.validateFields( async(err, { brandname, keyword ,template }) => {
+      this.props.form.validateFields( async(err, { brandName, keyword ,template }) => {
         if (!err) {
         try{
-            const config = {
-                headers: { Authorization: `Token ${token}` }
-            };
-            let response = await axios.post('https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/tasks/',config,{
-
-             brandname,
-             keyword,
-             template,
-              },
-            );
+            
+          const url = 'https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/tasks/'
+          const data = {
+            brandName,
+            keyword,
+            template
+          }
+          
+          axios.post(url, data, {
+            headers: {
+              'Authorization': `Token ${token}`
+            },
+          });
             
 
-            console.log('Rask Post Status: ',response.data)
+            console.log('data')
             history.push('/tasks')
         }catch (err){
             console.log('Task Post error: ',err)
@@ -51,7 +54,7 @@ class Tasks extends React.Component {
         >
         <Form onSubmit={this.onSubmit} className="login-form" layout="vertical">
            <Form.Item label="Brand Name">
-             {getFieldDecorator('brandname', {
+             {getFieldDecorator('brandName', {
                rules: [
                  { required: true, message: 'Please enter the brandname' }
                ]

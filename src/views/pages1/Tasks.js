@@ -1,12 +1,6 @@
 import React from 'react';
 import './tasks.scss';
 import { Link } from 'react-router-dom';
-
-
-
-
-
-
 import axios from 'axios';
 import history from '../../helpers/routeUtils';
 import { Form, Icon, Input, Button, Row, Table } from 'antd';
