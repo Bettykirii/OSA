@@ -8,7 +8,7 @@ const TasksForm =React.lazy(() => import('../src/views/pages1/TasksForm'))
 const routes = [
     { path: '/', exact: true, name: 'Home' },
     { path: '/tasks', component:Tasks,exact: true, name: 'Tasks' },
-    { path: '/reports', component:Reports,exact: true, name: 'Reports' },
+    { path: '/reports/:id', component:Reports,exact: true, name: 'Reports' },
     { path: '/tasks-form', component:TasksForm,exact: true, name: 'TasksForm' },
 
 

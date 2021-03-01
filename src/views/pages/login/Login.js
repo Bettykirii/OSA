@@ -17,7 +17,7 @@ class LogIn extends React.Component {
         if (!err) {
 
           try {
-            loginResponse = await axios
+            loginResponse = await axios 
             .post(
               `https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/login/`,
               {

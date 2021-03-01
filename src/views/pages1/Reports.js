@@ -1,63 +1,68 @@
-// import React, { Component } from 'react'
-// import axios from 'axios'
-// // import ReactTable from "react-table"; 
-// // import 'react-table/react-table.css'
-// const token = localStorage.getItem("token");
+import React from 'react';
+import './tasks.scss';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import history from '../../helpers/routeUtils';
+import { Form, Icon, Input, Button, Row, Table } from 'antd';
 
-// export default class Reports extends Component {
-//   constructor(props){
-//     super(props)
-//     this.state = {
-//       users: [],
-//       loading:true
-//     }
-//   }
-//   async getUsersData(){
-//     const res = await axios.get('https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/reports', {
-//         headers: {
-//             Authorization: `Token ${token}`,
-//         },
-//     console.log(res.data)
-//     this.setState({loading:false, users: res.data})
-//   }
-//   componentDidMount(){
-//     this.getUsersData()
-//   }
-//   render() {
-//     const columns = [{  
-//       Header: 'ID',  
-//       accessor: 'id',
-//      }
-//      ,{  
-//       Header: 'Name',  
-//       accessor: 'name' ,
-//       }
-     
-//      ,{  
-//      Header: 'Username',  
-//      accessor: 'username' ,
-//      }
-//      ,{  
-//      Header: 'Phone',  
-//      accessor: 'phone',
-//      },
-//      {  
-//       Header: 'Email',  
-//       accessor: 'email',
-//       },
-//       {  
-//         Header: 'Website',  
-//         accessor: 'website',
-//         }
-//   ]
-//     return (
-// //       <ReactTable  
-// //       data={this.state.users}  
-// //       columns={columns}  
-// //    />
-// <>
-// <p>reports</p>
-// </>
-//     )
-//   }
-// }
+
+console.clear();
+const token = localStorage.getItem("token");
+let dataSource;
+
+const columns = [
+    {
+       
+        render: (record, rowIndex) => (
+            <a>
+
+            </a>
+        ),
+    },
+    {
+        title: 'Likes',
+        dataIndex: 'likes',
+        key: 'likes',
+    },
+    {
+        title: 'Links',
+        dataIndex: 'link',
+        key: 'link',
+    },
+    {
+        title: 'Comments',
+        dataIndex: 'comments',
+        key: 'comments',
+    },
+    {
+        title: 'Mentions',
+        dataIndex: 'mentions',
+        key: 'mentions',
+    }
+];
+class Reports extends React.Component {
+    async getReports() {
+        const reportsresp = await axios.get(`https://pacific-castle-48199.herokuapp.com/https://tunde.herokuapp.com/api/v1/reports/${this.props.history.location.state.taskDetail._id}`, {
+        headers: {
+            Authorization: `Token ${token}`,
+        },
+    });
+    console.log(reportsresp.data);
+    dataSource = reportsresp.data;
+}
+
+    componentDidMount() {
+        this.getReports();
+    }
+    render() {
+        return (
+            <>
+                <p>Reports</p>
+                <Table dataSource={dataSource} columns={columns} />
+
+
+            </>
+        );
+    }
+}
+export default Form.create({ name: 'reports' })(Reports);
